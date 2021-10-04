@@ -28,7 +28,11 @@ function App() {
 			entryPoints: ['index.js'],
 			bundle: true,
 			write: false,
-			plugins: [unpkgPathPlugin()]
+			plugins: [unpkgPathPlugin()],
+			define: {
+				global: 'window',
+				'process.env.NODE_ENV': '"production"'
+			}
 		});
 
 		setCode(bundle.outputFiles[0].text);
