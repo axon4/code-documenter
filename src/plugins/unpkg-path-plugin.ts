@@ -5,31 +5,26 @@ import localForage from 'localforage';
 const fileCache = localForage.createInstance({
 	name: 'fileCache'
 });
-
-(async () => {
-	await fileCache.setItem('colour', 'green');
-	const colour = await fileCache.getItem('colour');
-	console.log(colour);
-})();
  
 export const unpkgPathPlugin = (inputCode: string) => {
 	return {
 		name: 'unpkg-path-plugin',
 		setup(build: esbuild.PluginBuild) {
+			// root entry file of 'index.js'
+			build.onResolve({filter: /(^index\.js$)/}, () => {
+				return {namespace: 'a', path: 'index.js'};
+			});
+
+			// relative path
+			build.onResolve({filter: /^\.+\//}, async (args: any) => {
+				return {
+					namespace: 'a',
+					path: new URL(args.path, 'https://unpkg.com' + args.resolveDir + '/').href
+				};
+			});
+
+			// main module
 			build.onResolve({filter: /.*/}, async (args: any) => {
-				console.log('onResolve', args);
-
-				if (args.path === 'index.js') {
-					return {namespace: 'a', path: args.path};
-				};
-
-				if (args.path.includes('./') || args.path.includes('../')) {
-					return {
-						namespace: 'a',
-						path: new URL(args.path, 'https://unpkg.com' + args.resolveDir + '/').href
-					};
-				};
-
 				return {
 					namespace: 'a',
 					path: `https://unpkg.com/${args.path}`
