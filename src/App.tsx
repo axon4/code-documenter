@@ -28,7 +28,7 @@ function App() {
 			entryPoints: ['index.js'],
 			bundle: true,
 			write: false,
-			plugins: [unpkgPathPlugin()],
+			plugins: [unpkgPathPlugin(input)],
 			define: {
 				global: 'window',
 				'process.env.NODE_ENV': '"production"'

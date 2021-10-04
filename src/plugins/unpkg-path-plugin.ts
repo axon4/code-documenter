@@ -12,7 +12,7 @@ const fileCache = localForage.createInstance({
 	console.log(colour);
 })();
  
-export const unpkgPathPlugin = () => {
+export const unpkgPathPlugin = (inputCode: string) => {
 	return {
 		name: 'unpkg-path-plugin',
 		setup(build: esbuild.PluginBuild) {
@@ -42,10 +42,7 @@ export const unpkgPathPlugin = () => {
 				if (args.path === 'index.js') {
 					return {
 						loader: 'jsx',
-						contents: `
-							import React, { Fragment } from 'react';
-							console.log(React, Fragment);
-						`
+						contents: inputCode
 					};
 				};
 
