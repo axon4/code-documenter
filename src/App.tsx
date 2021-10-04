@@ -40,7 +40,7 @@ function App() {
 			<div>
 				<button onClick={onClick}>Submit</button>
 			</div>
-			<code>{code}</code>
+			<pre>{code}</pre>
 		</>
 	);
 };
