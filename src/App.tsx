@@ -4,13 +4,13 @@ import unpkgPathPlugin from './plugins/unpkg-path-plugin';
 import fetchPlugin from './plugins/fetch-plugin';
 
 function App() {
-	const ref = useRef<any>();
+	const ESBuildRef = useRef<any>();
 
 	const [ input, setInput ] = useState('');
 	const [ code, setCode ] = useState('');
 
 	const startService = async () => {
-		ref.current = await esbuild.startService({
+		ESBuildRef.current = await esbuild.startService({
 			worker: true,
 			wasmURL: 'https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm'
 		});
@@ -21,11 +21,11 @@ function App() {
 	}, []);
 
 	const onClick = async () => {
-		if (!ref.current) {
+		if (!ESBuildRef.current) {
 			return;
 		};
 
-		const bundle = await ref.current.build({
+		const bundle = await ESBuildRef.current.build({
 			entryPoints: ['index.js'],
 			bundle: true,
 			write: false,
@@ -39,8 +39,24 @@ function App() {
 			}
 		});
 
-		setCode(bundle.outputFiles[0].text);
+		// setCode(bundle.outputFiles[0].text);
+		iframeRef.current.contentWindow.postMessage(bundle.outputFiles[0].text, '*');
 	};
+
+	const iframeRef = useRef<any>();
+	const html = `
+		<html>
+			<head></head>
+			<body>
+				<div id='root'></div>
+				<script>
+					window.addEventListener('message', event => {
+						eval(event.data);
+					}, false);
+				</script>
+			</body>
+		</html>
+	`;
 
 	return (
 		<>
@@ -49,6 +65,7 @@ function App() {
 				<button onClick={onClick}>Submit</button>
 			</div>
 			<pre>{code}</pre>
+			<iframe ref={iframeRef} srcDoc={html} sandbox='allow-scripts' />
 		</>
 	);
 };
