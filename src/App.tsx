@@ -67,8 +67,11 @@ function App() {
 
 	return (
 		<>
-			<CodeEditor initialValue='console.table();' />
-			<textarea onChange={e => setInput(e.target.value)}></textarea>
+			<CodeEditor
+				initialValue='console.table();'
+				onChange={value => setInput(value)}
+			/>
+			<textarea value={input} onChange={e => setInput(e.target.value)}></textarea>
 			<div>
 				<button onClick={onClick}>Submit</button>
 			</div>
