@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import * as esbuild from 'esbuild-wasm';
 import unpkgPathPlugin from './plugins/unpkg-path-plugin';
 import fetchPlugin from './plugins/fetch-plugin';
+import CodeEditor from './components/codeEditor';
 
 function App() {
 	const ESBuildRef = useRef<any>();
@@ -61,12 +62,12 @@ function App() {
 			}
 		});
 
-		// setCode(bundle.outputFiles[0].text);
 		iframeRef.current.contentWindow.postMessage(bundle.outputFiles[0].text, '*');
 	};
 
 	return (
 		<>
+			<CodeEditor initialValue='console.table();' />
 			<textarea onChange={e => setInput(e.target.value)}></textarea>
 			<div>
 				<button onClick={onClick}>Submit</button>
