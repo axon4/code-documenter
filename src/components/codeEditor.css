@@ -1,0 +1,17 @@
+.editor-container {
+    position: relative;
+    height: 100%;
+}
+
+.editor-container .button-format {
+    z-index: 777;
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.editor-container:hover .button-format {
+    opacity: 1;
+}
