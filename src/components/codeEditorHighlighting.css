@@ -1,0 +1,168 @@
+.editor-wrapper .mtk1 {
+	color: #D4D4D4;
+}
+
+.editor-wrapper .mtk2 {
+	color: #1E1E1E;
+}
+
+.editor-wrapper .mtk3 {
+	color: #000080;
+}
+
+.editor-wrapper .mtk4 {
+	color: #6A9955;
+}
+
+.editor-wrapper .mtk5 {
+	color: #569CD6;
+}
+
+.editor-wrapper .mtk6 {
+	color: #B5CEA8;
+}
+
+.editor-wrapper .mtk7 {
+	color: #646695;
+}
+
+.editor-wrapper .mtk8 {
+	color: #C586C0;
+}
+
+.editor-wrapper .mtk9 {
+	color: #9CDCFE;
+}
+
+.editor-wrapper .mtk10 {
+	color: #F44747;
+}
+
+.editor-wrapper .mtk11 {
+	color: #CE9178;
+}
+
+.editor-wrapper .mtk12 {
+	color: #6796E6;
+}
+
+.editor-wrapper .mtk13 {
+	color: #808080;
+}
+
+.editor-wrapper .mtk14 {
+	color: #D16969;
+}
+
+.editor-wrapper .mtk15 {
+	color: #DCDCAA;
+}
+
+.editor-wrapper .mtk16 {
+	color: #4EC9B0;
+}
+
+.editor-wrapper .mtk17 {
+	color: #C586C0;
+}
+
+.editor-wrapper .mtk18 {
+	color: #4FC1FF;
+}
+
+.editor-wrapper .mtk19 {
+	color: #C8C8C8;
+}
+
+.editor-wrapper .mtk20 {
+	color: #CD9731;
+}
+
+.editor-wrapper .mtk21 {
+	color: #B267E6;
+}
+
+.editor-wrapper .mtki {
+	font-style: italic;
+}
+
+.editor-wrapper .mtkb {
+	font-weight: bold;
+}
+
+.editor-wrapper .mtku {
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
+.editor-wrapper .mtk100.Identifier.JsxElement.Bracket {
+	color: #0080FF;
+}
+
+.editor-wrapper .mtk1000.Identifier.JsxOpeningElement.Bracket {
+	font-weight: bold;
+	color: #808080;
+}
+
+.editor-wrapper .mtk1001.Identifier.JsxClosingElement.Bracket {
+	font-weight: lighter;
+	color: #808080;
+}
+
+.editor-wrapper .mtk101.Identifier.JsxOpeningElement.Identifier {
+	color: #569CD6;
+}
+
+.editor-wrapper .mtk102.Identifier.JsxClosingElement.Identifier {
+	font-weight: lighter;
+	color: #569CD6;
+}
+
+.editor-wrapper .mtk103.Identifier.JsxAttribute.Identifier {
+	color: #9CDCFE;
+}
+
+.editor-wrapper .mtk104.JsxElement.JsxText {
+	color: darkgoldenrod;
+}
+
+.editor-wrapper .mtk105.glyph.Identifier.JsxElement {
+	background: #61DAFB;
+	opacity: 0.25;
+}
+
+.editor-wrapper .mtk12.Identifier.JsxExpression.JsxClosingElement {
+	color: #EC5F67;
+}
+
+.editor-wrapper .mtk12.Identifier.JsxSelfClosingElement {
+	color: #EC5F67;
+}
+
+.editor-wrapper .mtk12.Identifier.VariableStatement.JsxClosingElement {
+	color: #EC5F67 !important;
+}
+
+.editor-wrapper .mtk12.VariableStatement.JsxSelfClosingElement.Identifier {
+	color: #EC5F67;
+}
+
+.editor-wrapper .mtk12.Identifier.JsxAttribute.VariableDeclaration {
+	color: crimson;
+}
+
+.editor-wrapper .mtk12.JsxExpression.VariableStatement {
+	color: #FAC863;
+}
+
+.editor-wrapper .mtk12.VariableStatement.JsxSelfClosingElement {
+	color: #EDE0E0;
+}
+
+.editor-wrapper .mtk12.VariableStatement.JsxClosingElement {
+	color: #EDE0E0;
+}
+
+.editor-wrapper .JsxText {
+	color: #0C141F;
+}

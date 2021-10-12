@@ -69,7 +69,7 @@ function App() {
 	return (
 		<>
 			<CodeEditor
-				initialValue='console.table();'
+				initialValue='const App = () => <h1>Hello, World!</h1>'
 				onChange={value => setInput(value)}
 			/>
 			<textarea value={input} onChange={e => setInput(e.target.value)}></textarea>
