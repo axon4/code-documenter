@@ -1,25 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 import CodeEditor from './components/codeEditor';
 import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import Preview from './components/preview';
+import bundler from './bundler';
 
 function App() {
-	const ESBuildRef = useRef<any>();
-
 	const [ input, setInput ] = useState('');
 	const [ bundledCode, setBundledCode ] = useState('');
 
-
-
 	const onClick = async () => {
-		if (!ESBuildRef.current) {
-			return;
-		};
-
-		const bundle = 
-
-		setBundledCode(bundle.outputFiles[0].text)
+		const bundle = await bundler(input);
+		setBundledCode(bundle);
 	};
 
 	return (
