@@ -12,16 +12,28 @@ export default async function bundler(input: string) {
 		});
 	};
 
-	const bundle = await service.build({
-		entryPoints: ['index.js'],
-		bundle: true,
-		write: false,
-		plugins: [unpkgPathPlugin(), fetchPlugin(input)],
-		define: {
-			global: 'window',
-			'process.env.NODE_ENV': '"production"'
-		}
-	});
+	try {
+		const bundle = await service.build({
+			entryPoints: ['index.js'],
+			bundle: true,
+			write: false,
+			plugins: [unpkgPathPlugin(), fetchPlugin(input)],
+			define: {
+				global: 'window',
+				'process.env.NODE_ENV': '"production"'
+			}
+		});
 
-	return bundle.outputFiles[0].text;
+		return {
+			code: bundle.outputFiles[0].text,
+			error: ''
+		};
+	} catch (error) {
+		if (error instanceof Error) {
+			return {
+				code: '',
+				error: error.message
+			};
+		};
+	};
 };

@@ -1,15 +1,22 @@
-.preview-wrapper {
+.preview-container {
 	position: relative;
 	height: 100%;
 	flex-grow: 1;
 }
 
-.preview-wrapper iframe {
+.preview-container iframe {
 	width: 100%;
 	height: 100%;
 }
 
-.react-draggable-transparent-selection .preview-wrapper::after {
+.preview-error {
+	position: absolute;
+	top: 0.625rem;
+	left: 0.625rem;
+	color: red;
+}
+
+.react-draggable-transparent-selection .preview-container::after {
 	position: absolute;
 	top: 0;
 	right: 0;

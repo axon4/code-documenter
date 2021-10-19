@@ -7,11 +7,13 @@ import Preview from './preview';
 const CodeCell = () => {
 	const [ input, setInput ] = useState('');
 	const [ bundledCode, setBundledCode ] = useState('');
+	const [ error, setError ] = useState('');
 
 	useEffect(() => {
 		const bundleTimer = setTimeout(async () => {
 			const bundle = await bundler(input);
-			setBundledCode(bundle);
+			setBundledCode(bundle!.code);
+			setError(bundle!.error);
 		}, 1000);
 
 		return () => clearTimeout(bundleTimer);
@@ -26,7 +28,7 @@ const CodeCell = () => {
 						onChange={value => setInput(value)}
 					/>
 				</Resizable>
-				<Preview code={bundledCode} />
+				<Preview code={bundledCode} error={error} />
 			</div>
 		</Resizable>
 	);
