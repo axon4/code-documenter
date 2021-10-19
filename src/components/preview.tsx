@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import './preview.css';
 
 const iframeHTML = `
-<html>
+<html style='background-color: white'>
 	<head></head>
 	<body>
 		<div id='root'></div>
