@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@monaco-editor/react": "3.7.5",
+		"@uiw/react-md-editor": "2.1.1",
 		"axios": "^0.22.0",
 		"bulmaswatch": "^0.8.1",
 		"esbuild-wasm": "0.8.27",
