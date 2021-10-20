@@ -1,9 +1,67 @@
-.w-md-editor .title {
-    font-size: unset !important;
-    font-weight: unset !important;
-    line-height: unset !important;
+.w-md-editor ul {
+	line-height: 1;
 }
 
-.w-md-editor ul {
-    line-height: 1;
+.w-md-editor .title {
+	font-size: unset;
+	font-weight: unset;
+	line-height: unset;
+	color: #D4D4D4 !important;
+}
+
+.text-editor em {
+	font-style: italic;
+}
+
+.text-editor .w-md-editor-bar {
+	position: relative;
+	width: 100%;
+	height: 0.6875rem;
+	background-position: 50%;
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+	background-color: #37414B;
+	background-repeat: no-repeat;
+	cursor: row-resize;
+}
+
+.text-editor .w-md-editor-bar svg {
+	display: none;
+}
+
+.text-editor .wmde-markdown hr {
+	border-top: 1px solid #DEE5ED;
+}
+
+.text-editor .wmde-markdown ol {
+	list-style: decimal;
+}
+
+.text-editor .w-md-editor-show-live {
+	/* Hide menu bar buttons to prevent accidental delete */
+	z-index: 777;
+}
+
+.text-editor .w-md-editor-toolbar {
+	background-color: #37414B;
+	border-bottom: 1px solid gray;
+}
+
+.text-editor .w-md-editor-toolbar li button {
+	color: #D4D4D4;
+}
+
+.text-editor .w-md-editor-content {
+	background-color: #202123;
+}
+
+.text-editor .w-md-editor, .text-editor .w-md-editor .w-md-editor-text-pre {
+	color: #D4D4D4;
+}
+
+.text-editor .w-md-editor-text-pre .bold {
+	color: unset;
+}
+
+.text-editor .token.list.punctuation {
+	background-color: unset;
 }
