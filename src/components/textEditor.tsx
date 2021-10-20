@@ -6,7 +6,7 @@ const TextEditor: React.FC = () => {
 	const [ editing, setEditing ] = useState(false);
 	const [ markdown, setMarkdown ] = useState('# Heading');
 	
-	const markdownWrapperRef = useRef<HTMLDivElement>(null);
+	const markdownWrapperRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		const outsideClickListener = (event: MouseEvent) => {
@@ -22,14 +22,14 @@ const TextEditor: React.FC = () => {
 
 	if (editing) {
 		return (
-			<div className='text-editor'>
+			<div ref={markdownWrapperRef} className='text-editor'>
 				<MDEditor value={markdown} onChange={updatedMarkdown => setMarkdown(updatedMarkdown || '')} />
 			</div>
 		);
 	};
 
 	return (
-		<div ref={markdownWrapperRef} className='text-editor card' onClick={() => setEditing(true)}>
+		<div className='text-editor card' onClick={() => setEditing(true)}>
 			<div className='card-content'>
 				<MDEditor.Markdown source={markdown} />
 			</div>
