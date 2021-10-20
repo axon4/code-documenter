@@ -4,12 +4,13 @@ import './textEditor.css';
 
 const TextEditor: React.FC = () => {
 	const [ editing, setEditing ] = useState(false);
+	const [ markdown, setMarkdown ] = useState('# Heading');
 	
-	const Ref = useRef<HTMLDivElement>(null);
+	const markdownWrapperRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const outsideClickListener = (event: MouseEvent) => {
-			if (Ref.current?.contains(event.target as Node)) {return};
+			if (markdownWrapperRef.current && event.target && markdownWrapperRef.current.contains(event.target as Node)) {return};
 			
 			setEditing(false);
 		};
@@ -22,14 +23,14 @@ const TextEditor: React.FC = () => {
 	if (editing) {
 		return (
 			<div className='text-editor'>
-				<MDEditor />
+				<MDEditor value={markdown} onChange={updatedMarkdown => setMarkdown(updatedMarkdown || '')} />
 			</div>
 		);
 	};
 
 	return (
-		<div ref={Ref} className='text-editor' onClick={() => setEditing(true)}>
-			<MDEditor.Markdown source={'# LOL'} />
+		<div ref={markdownWrapperRef} className='text-editor' onClick={() => setEditing(true)}>
+			<MDEditor.Markdown source={markdown} />
 		</div>
 	);
 };
