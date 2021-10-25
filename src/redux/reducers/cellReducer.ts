@@ -63,6 +63,6 @@ const cellReducer = produce((state: CellState = initialState, action: Action) =>
 		default:
 			return state;
 	};
-});
+}, initialState);
 
 export default cellReducer;
