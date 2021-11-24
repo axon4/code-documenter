@@ -9,6 +9,7 @@
 		"eject": "react-scripts eject"
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-free": "^5.15.4",
 		"@monaco-editor/react": "3.7.5",
 		"@uiw/react-md-editor": "2.1.1",
 		"axios": "0.21.1",
