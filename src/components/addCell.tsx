@@ -2,7 +2,7 @@ import { useActions } from '../hooks/useActions';
 import './addCell.css';
 
 interface AddCellProps {
-    nextCellID: string;
+    nextCellID: string | null;
 };
 
 const AddCell: React.FC<AddCellProps> = ({ nextCellID }) => {
@@ -10,8 +10,8 @@ const AddCell: React.FC<AddCellProps> = ({ nextCellID }) => {
 
     return (
         <div>
-            <button onClick={() => insertCellBefore(nextCellID, 'code')}></button>
-            <button onClick={() => insertCellBefore(nextCellID, 'text')}></button>
+            <button onClick={() => insertCellBefore(nextCellID, 'code')}>Code</button>
+            <button onClick={() => insertCellBefore(nextCellID, 'text')}>Text</button>
         </div>
     )
 };
