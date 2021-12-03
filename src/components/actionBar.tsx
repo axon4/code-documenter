@@ -15,7 +15,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
 				onClick={() => moveCell(id, 'up')}
 			>
 				<span className='icon'>
-					<i className='fas fa-arrow-up'></i>
+					<i className='fas fa-arrow-up' />
 				</span>
 			</button>
 			<button
@@ -23,7 +23,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
 				onClick={() => moveCell(id, 'down')}
 			>
 				<span className='icon'>
-					<i className='fas fa-arrow-down'></i>
+					<i className='fas fa-arrow-down' />
 				</span>
 			</button>
 			<button
@@ -31,7 +31,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ id }) => {
 				onClick={() => deleteCell(id)}
 			>
 				<span className='icon'>
-					<i className='fas fa-times'></i>
+					<i className='fas fa-times' />
 				</span>
 			</button>
 		</div>
