@@ -32,7 +32,25 @@ export interface InsertCellAfterAction {
 	}
 };
 
+export interface BundleStartAction {
+	type: ActionTypes.BUNDLE_START,
+	payload: {cellID: string}
+};
+
+export interface BundleEndAction {
+	type: ActionTypes.BUNDLE_END,
+	payload: {
+		cellID: string,
+		bundle: {
+			code: string,
+			error: string
+		}
+	}
+}
+
 export type Action = MoveCellAction
 	| UpdateCellAction
 	| DeleteCellAction
-	| InsertCellAfterAction;
+	| InsertCellAfterAction
+	| BundleStartAction
+	| BundleEndAction;
