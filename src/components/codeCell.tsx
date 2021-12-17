@@ -5,6 +5,7 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import Resizable from './resizable';
 import CodeEditor from './codeEditor';
 import Preview from './preview';
+import './codeCell.css';
 
 interface CodeCellProps {
 	cell: Cell;
@@ -47,7 +48,11 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 					/>
 				</Resizable>
 				{!bundle || bundle.loading
-					? <div>LOADING...</div>
+					? <div className='progress-cover'>
+						<progress className='progress is-primary is-small' max='100'>
+							LOADING
+						</progress>
+					</div>
 					: <Preview code={bundle.code} error={bundle.error} />
 				}
 			</div>
