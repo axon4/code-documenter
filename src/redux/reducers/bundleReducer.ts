@@ -7,7 +7,7 @@ interface BundleState {
 		code: string;
 		loading: boolean;
 		error: string;
-	}
+	} | undefined;
 };
 
 const initialState: BundleState = {};
