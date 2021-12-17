@@ -24,7 +24,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 		}, 700);
 
 		return () => clearTimeout(bundleTimer);
-	}, [cell.id, cell.content]);
+	}, [createBundle, cell.id, cell.content]);
 
 	return (
 		<Resizable direction='vertical'>
