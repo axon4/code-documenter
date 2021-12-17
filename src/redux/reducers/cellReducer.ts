@@ -9,7 +9,7 @@ interface CellState {
 	order: string[];
 	data: {
 		[key: string]: Cell;
-	}
+	};
 };
 
 const initialState: CellState = {
