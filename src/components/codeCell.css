@@ -6,4 +6,19 @@
     padding-right: 7%;
     padding-left: 7%;
     background-color: white;
+    animation: fadeIn 0.7s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
