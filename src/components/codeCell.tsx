@@ -21,8 +21,26 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 	const cumulativeCode = useTypedSelector(state => {
 		const { data, order } = state.cell;
 		const orderedCells = order.map(ID => data[ID]);
-		
-		const cumulativeCode = [];
+
+		const cumulativeCode = [`
+			import React from 'react';
+			import ReactDOM from 'react-dom';
+
+			const show = value => {
+				const root = document.getElementById('root');
+
+				if (typeof value === 'object') {
+					if (value.$$typeof && value.props) {
+						ReactDOM.render(value, root);
+					} else {
+						root.innerHTML = value;
+					}
+				} else {
+					root.innerHTML = value;
+				};
+			};
+		`];
+
 		for (let orderedCell of orderedCells) {
 			if (orderedCell.type === 'code') {
 				cumulativeCode.push(orderedCell.content);
