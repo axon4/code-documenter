@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { Cell } from '../redux';
 import { useActions } from '../hooks/useActions';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useCumulativeCode } from '../hooks/useCumulativeCode';
 import Resizable from './resizable';
 import CodeEditor from './codeEditor';
 import Preview from './preview';
 import './codeCell.css';
-import { useCumulativeCode } from '../hooks/useCumulativeCode';
 
 interface CodeCellProps {
 	cell: Cell;
