@@ -33,7 +33,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 					if (value.$$typeof && value.props) {
 						_ReactDOM.render(value, root);
 					} else {
-						root.innerHTML = value;
+						root.innerHTML = JSON.stringify(value);
 					}
 				} else {
 					root.innerHTML = value;
