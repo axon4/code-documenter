@@ -21,7 +21,9 @@ export default async function bundler(input: string) {
 			define: {
 				global: 'window',
 				'process.env.NODE_ENV': '"production"'
-			}
+			},
+			jsxFactory: '_React.createElement',
+			jsxFragment: '_React.Fragment'
 		});
 
 		return {
