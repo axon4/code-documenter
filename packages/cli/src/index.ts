@@ -1,3 +1,7 @@
-import serve from 'local-server';
+import { program as programme } from 'commander';
+import { serveCommand } from './commands/serve';
 
-serve();
+programme
+    .addCommand(serveCommand);
+
+programme.parse(process.argv);
