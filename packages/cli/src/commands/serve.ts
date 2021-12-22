@@ -2,6 +2,8 @@ import path from 'path';
 import { Command } from 'commander';
 import { serve } from 'local-server';
 
+const isInProduction = process.env.NODE_ENV === 'production';
+
 export const serveCommand = new Command()
     .command('serve [filename]')
     .description('open a file for editing')
@@ -10,7 +12,7 @@ export const serveCommand = new Command()
         try {
             const directory = path.join(process.cwd(), path.dirname(filename));
 
-            await serve(path.basename(filename), directory, parseInt(port));
+            await serve(path.basename(filename), directory, parseInt(port), !isInProduction);
             console.log(`opened ${filename}. navigate to http://localhost:${port} to edit the file.`)
         } catch (error: any) {
             switch (error.code) {
