@@ -1,3 +1,9 @@
+import express from 'express';
+
 export const serve = (filename: string, directory: string, port: number) => {
-    console.log(`Serving File: ${filename}, in Directory: ${directory}, on Port: ${port}`);
+    const server = express();
+
+    return new Promise<void>((resolve, reject) => {
+        server.listen(port, resolve).on('error', reject)
+    });
 };
