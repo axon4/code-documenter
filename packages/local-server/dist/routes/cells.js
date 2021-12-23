@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createCellsRouter = void 0;
 const path_1 = __importDefault(require("path"));
-const promises_1 = __importDefault(require("fs/promises"));
+const fs_1 = require("fs");
 const express_1 = __importDefault(require("express"));
 ;
 const createCellsRouter = (filename, directory) => {
@@ -23,12 +23,12 @@ const createCellsRouter = (filename, directory) => {
     const fullPath = path_1.default.join(directory, filename);
     cellsRouter.get('/cells', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const file = yield promises_1.default.readFile(fullPath, { encoding: 'utf-8' });
+            const file = yield fs_1.promises.readFile(fullPath, { encoding: 'utf-8' });
             response.status(200).send(JSON.parse(file));
         }
         catch (error) {
             if (error.code === 'ENOENT') {
-                yield promises_1.default.writeFile(fullPath, '[]', 'utf-8');
+                yield fs_1.promises.writeFile(fullPath, '[]', 'utf-8');
             }
             else {
                 throw error;
@@ -39,7 +39,7 @@ const createCellsRouter = (filename, directory) => {
     }));
     cellsRouter.post('/cells', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         const { cells } = request.body;
-        yield promises_1.default.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
+        yield fs_1.promises.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
         response.status(200);
     }));
     return cellsRouter;

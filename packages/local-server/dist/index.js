@@ -10,6 +10,7 @@ const http_proxy_middleware_1 = require("http-proxy-middleware");
 const cells_1 = require("./routes/cells");
 const serve = (filename, directory, port, useProxy) => {
     const server = (0, express_1.default)();
+    server.use((0, cells_1.createCellsRouter)(filename, directory));
     if (useProxy === true) {
         server.use((0, http_proxy_middleware_1.createProxyMiddleware)({
             target: 'http://localhost:3000',
@@ -22,7 +23,6 @@ const serve = (filename, directory, port, useProxy) => {
         server.use(express_1.default.static(path_1.default.dirname(packagePath)));
     }
     ;
-    server.use((0, cells_1.createCellsRouter)(filename, directory));
     return new Promise((resolve, reject) => {
         server.listen(port, resolve).on('error', reject);
     });
