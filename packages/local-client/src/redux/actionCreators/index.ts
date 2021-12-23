@@ -83,7 +83,7 @@ export const fetchCells = () => async (dispatch: Dispatch<Action>) => {
 		});
 	} catch (error: any) {
 		dispatch({
-			type: ActionTypes.FETCH_CELLS_END,
+			type: ActionTypes.FETCH_CELLS_ERROR,
 			payload: error.message
 		});
 	};

@@ -20,6 +20,7 @@ export const serveCommand = new Command()
                     console.log(`port ${port} is already in use. please try another port.`);
 
                     break;
+                    
                 default:
                     console.log(error.message);
 

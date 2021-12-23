@@ -71,6 +71,7 @@ const cellReducer = produce((state: CellState = initialState, action: Action): C
 			return state;
 
 		case ActionTypes.FETCH_CELLS_END:
+			state.loading = false;
 			state.order = action.payload.map(cell => cell.id);
 			state.data = action.payload.reduce((acc, cell) => {
 				acc[cell.id] = cell;
