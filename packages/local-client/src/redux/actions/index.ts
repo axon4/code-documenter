@@ -8,7 +8,7 @@ export interface MoveCellAction {
 	payload: {
 		id: string;
 		direction: Direction;
-	}
+	};
 };
 
 export interface UpdateCellAction {
@@ -16,7 +16,7 @@ export interface UpdateCellAction {
 	payload: {
 		id: string;
 		content: string;
-	}
+	};
 };
 
 export interface DeleteCellAction {
@@ -29,23 +29,23 @@ export interface InsertCellAfterAction {
 	payload: {
 		id: string | null;
 		type: CellTypes;
-	}
+	};
 };
 
 export interface BundleStartAction {
-	type: ActionTypes.BUNDLE_START,
-	payload: {cellID: string}
+	type: ActionTypes.BUNDLE_START;
+	payload: {cellID: string};
 };
 
 export interface BundleEndAction {
-	type: ActionTypes.BUNDLE_END,
+	type: ActionTypes.BUNDLE_END;
 	payload: {
 		cellID: string,
 		bundle: {
 			code: string,
 			error: string
 		}
-	}
+	};
 };
 
 export interface FetchCellsStartAction {
@@ -62,6 +62,11 @@ export interface FetchCellsErrorAction {
 	payload: string;
 };
 
+export interface SaveCellsErrorAction {
+	type: ActionTypes.SAVE_CELLS_ERROR;
+	payload: string;
+}
+
 export type Action = MoveCellAction
 	| UpdateCellAction
 	| DeleteCellAction
@@ -70,4 +75,5 @@ export type Action = MoveCellAction
 	| BundleEndAction
 	| FetchCellsStartAction
 	| FetchCellsEndAction
-	| FetchCellsErrorAction;
+	| FetchCellsErrorAction
+	| SaveCellsErrorAction;

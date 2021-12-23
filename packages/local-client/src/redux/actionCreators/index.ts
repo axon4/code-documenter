@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { RootState } from '../';
 import {
 	MoveCellAction,
 	UpdateCellAction, 
@@ -74,7 +75,7 @@ export const fetchCells = () => async (dispatch: Dispatch<Action>) => {
 	dispatch({type: ActionTypes.FETCH_CELLS_START});
 
 	try {
-		const { data }:{data: Cell[]} = await axios.get('/cells');
+		const { data }: {data: Cell[]} = await axios.get('/cells');
 
 		dispatch({
 			type: ActionTypes.FETCH_CELLS_END,
@@ -85,5 +86,21 @@ export const fetchCells = () => async (dispatch: Dispatch<Action>) => {
 			type: ActionTypes.FETCH_CELLS_END,
 			payload: error.message
 		});
+	};
+};
+
+export const saveCells = () => {
+	return async (dispatch: Dispatch<Action>, getState: () => RootState) => {
+		const { cell: { order, data } } = getState();
+		const cells = order.map(id => data[id]);
+
+		try {
+			await axios.post('/cells', { cells });
+		} catch (error: any) {
+			dispatch({
+				type: ActionTypes.SAVE_CELLS_ERROR,
+				payload: error.message
+			});
+		};
 	};
 };
