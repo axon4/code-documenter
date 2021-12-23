@@ -24,7 +24,7 @@ const createCellsRouter = (filename, directory) => {
     cellsRouter.get('/cells', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const file = yield fs_1.promises.readFile(fullPath, { encoding: 'utf-8' });
-            response.status(200).send(JSON.parse(file));
+            response.status(200).end(JSON.parse(file));
         }
         catch (error) {
             if (error.code === 'ENOENT') {
@@ -40,7 +40,7 @@ const createCellsRouter = (filename, directory) => {
     cellsRouter.post('/cells', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
         const { cells } = request.body;
         yield fs_1.promises.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
-        response.status(200);
+        response.status(200).end();
     }));
     return cellsRouter;
 };

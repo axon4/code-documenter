@@ -19,7 +19,7 @@ export const createCellsRouter = (filename: string, directory: string) => {
 		try {
 			const file = await fs.readFile(fullPath, {encoding: 'utf-8'});
 
-			response.status(200).send(JSON.parse(file));
+			response.status(200).end(JSON.parse(file));
 		} catch (error: any) {
 			if (error.code === 'ENOENT') {
 				await fs.writeFile(fullPath, '[]', 'utf-8');
@@ -34,7 +34,7 @@ export const createCellsRouter = (filename: string, directory: string) => {
 
 		await fs.writeFile(fullPath, JSON.stringify(cells), 'utf-8');
 
-		response.status(200);
+		response.status(200).end();
 	});
 
 	return cellsRouter;

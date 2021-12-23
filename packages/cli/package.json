@@ -7,7 +7,8 @@
 	},
 	"dependencies": {
 		"commander": "^8.3.0",
-		"local-server": "^1.0.0"
+		"local-server": "^1.0.0",
+		"serve": "^13.0.2"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.1",
