@@ -1,6 +1,6 @@
 import path from 'path';
 import { Command } from 'commander';
-import { serve } from 'local-server';
+import { serve } from 'code-documenter-server';
 
 const isInProduction = process.env.NODE_ENV === 'production';
 

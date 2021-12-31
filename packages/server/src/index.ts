@@ -15,7 +15,7 @@ export const serve = (filename: string, directory: string, port: number, useProx
 			logLevel: 'silent'
 		}));
 	} else {
-		const packagePath = require.resolve('local-client/build/index.html');
+		const packagePath = require.resolve('code-documenter-client/build/index.html');
 
 		server.use(express.static(path.dirname(packagePath)));
 	};	

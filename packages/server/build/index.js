@@ -19,7 +19,7 @@ const serve = (filename, directory, port, useProxy) => {
         }));
     }
     else {
-        const packagePath = require.resolve('local-client/build/index.html');
+        const packagePath = require.resolve('code-documenter-client/build/index.html');
         server.use(express_1.default.static(path_1.default.dirname(packagePath)));
     }
     ;

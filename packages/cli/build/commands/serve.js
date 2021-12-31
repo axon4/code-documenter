@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveCommand = void 0;
 const path_1 = __importDefault(require("path"));
 const commander_1 = require("commander");
-const local_server_1 = require("local-server");
+const code_documenter_server_1 = require("code-documenter-server");
 const isInProduction = process.env.NODE_ENV === 'production';
 exports.serveCommand = new commander_1.Command()
     .command('serve [filename]')
@@ -24,7 +24,7 @@ exports.serveCommand = new commander_1.Command()
     .action((filename = 'document.js', { port }) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const directory = path_1.default.join(process.cwd(), path_1.default.dirname(filename));
-        yield (0, local_server_1.serve)(path_1.default.basename(filename), directory, parseInt(port), !isInProduction);
+        yield (0, code_documenter_server_1.serve)(path_1.default.basename(filename), directory, parseInt(port), !isInProduction);
         console.log(`opened ${filename}. navigate to http://localhost:${port} to edit the file.`);
     }
     catch (error) {

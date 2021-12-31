@@ -1,5 +1,5 @@
 {
-	"name": "cli",
+	"name": "code-documenter",
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
@@ -7,7 +7,7 @@
 	},
 	"dependencies": {
 		"commander": "^8.3.0",
-		"local-server": "^1.0.0"
+		"code-documenter-server": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.1",
