@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import { program as programme } from 'commander';
 import { serveCommand } from './commands/serve';
 

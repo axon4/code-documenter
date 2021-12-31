@@ -5,7 +5,7 @@
 		"access": "public"
 	},
 	"files": [
-		"build"
+		"/build"
 	],
 	"scripts": {
 		"start": "BROWSER=none react-scripts start",
