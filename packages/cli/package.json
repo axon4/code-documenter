@@ -1,6 +1,6 @@
 {
 	"name": "code-documenter",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -13,11 +13,11 @@
 		"prepublishOnly": "esbuild src/index.ts --platform=node --outfile=build/index.js --bundle --minify --define:process.env.NODE_ENV=\\\"production\\\""
 	},
 	"dependencies": {
-		"code-documenter-client": "^1.0.0"
+		"code-documenter-client": "^1.0.1"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.1",
-		"code-documenter-server": "^1.0.0",
+		"code-documenter-server": "^1.0.1",
 		"commander": "^8.3.0",
 		"esbuild": "0.8.26",
 		"typescript": "^4.5.4"

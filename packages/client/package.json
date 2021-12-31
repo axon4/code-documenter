@@ -1,6 +1,6 @@
 {
 	"name": "code-documenter-client",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"homepage": "https://axon4.github.io/code-documenter",
 	"publishConfig": {
 		"access": "public"
