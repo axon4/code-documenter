@@ -15,21 +15,23 @@ const initialState: BundleState = {};
 const bundleReducer = produce((state: BundleState = initialState, action: Action): BundleState => {
 	switch (action.type) {
 		case ActionTypes.BUNDLE_START:
-			state[action.payload.cellID] = {
+			state[action.payLoad.cellID] = {
 				code: '',
 				loading: true,
 				error: ''
 			};
 
 			return state;
+
 		case ActionTypes.BUNDLE_END:
-			state[action.payload.cellID] = {
-				code: action.payload.bundle.code,
+			state[action.payLoad.cellID] = {
+				code: action.payLoad.bundle.code,
 				loading: false,
-				error: action.payload.bundle.error
+				error: action.payLoad.bundle.error
 			};
 
 			return state;
+
 		default:
 			return state;
 	};

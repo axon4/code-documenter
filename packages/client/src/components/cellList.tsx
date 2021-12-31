@@ -1,12 +1,12 @@
 import { Fragment, useEffect } from 'react';
-import { useTypedSelector } from '../hooks/useTypedSelector';
 import AddCell from './addCell';
 import CellListItem from './cellListItem';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
 import './cellList.css';
 
 const CellList: React.FC = () => {
-	const cells = useTypedSelector(({ cell: { order, data }}) => order.map(id => data[id]));
+	const cells = useTypedSelector(({ cell: { order, data } }) => order.map(ID => data[ID]));
 	const { fetchCells } = useActions();
 
 	useEffect(() => {
@@ -15,9 +15,9 @@ const CellList: React.FC = () => {
 	}, []);
 
 	const renderedCells = cells.map(cell => (
-		<Fragment key={cell.id}>
+		<Fragment key={cell.ID}>
 			<CellListItem cell={cell} />
-			<AddCell previousCellID={cell.id} />
+			<AddCell previousCellID={cell.ID} />
 		</Fragment>
 	));
 

@@ -23,44 +23,50 @@ const initialState: CellState = {
 const cellReducer = produce((state: CellState = initialState, action: Action): CellState => {
 	switch (action.type) {
 		case ActionTypes.MOVE_CELL:
-			const { direction } = action.payload;
-			const index = state.order.findIndex(id => id === action.payload.id);
+			const { direction } = action.payLoad;
+
+			const index = state.order.findIndex(ID => ID === action.payLoad.ID);
+
 			const targetIndex = direction === 'up' ? index - 1 : index + 1;
 
-			if (targetIndex < 0 || targetIndex > state.order.length - 1) {return state};
+			if (targetIndex < 0 || targetIndex > state.order.length - 1) {
+				return state;
+			};
 
 			state.order[index] = state.order[targetIndex];
-			state.order[targetIndex] = action.payload.id;
+			state.order[targetIndex] = action.payLoad.ID;
 
 			return state;
 
 		case ActionTypes.UPDATE_CELL:
-			const { id, content } = action.payload;
+			const { ID, conTent } = action.payLoad;
 
-			state.data[id].content = content;
+			state.data[ID].conTent = conTent;
 
 			return state;
 
 		case ActionTypes.DELETE_CELL:
-			delete state.data[action.payload];
-			state.order = state.order.filter(id => id !== action.payload);
+			delete state.data[action.payLoad];
+
+			state.order = state.order.filter(ID => ID !== action.payLoad);
 
 			return state;
 
 		case ActionTypes.INSERT_CELL_AFTER:
 			const newCell: Cell = {
-				id: Math.random().toString(36).substr(2, 5),
-				type: action.payload.type,
-				content: ''
+				ID: Math.random().toString(36).substr(2, 5),
+				type: action.payLoad.type,
+				conTent: ''
 			};
 
-			state.data[newCell.id] = newCell;
+			state.data[newCell.ID] = newCell;
 
-			const foundIndex = state.order.findIndex(id => id === action.payload.id);
+			const foundIndex = state.order.findIndex(ID => ID === action.payLoad.ID);
+
 			if (foundIndex < 0) {
-				state.order.unshift(newCell.id);
+				state.order.unshift(newCell.ID);
 			} else {
-				state.order.splice(foundIndex + 1, 0, newCell.id);
+				state.order.splice(foundIndex + 1, 0, newCell.ID);
 			};
 
 			return state;
@@ -73,34 +79,35 @@ const cellReducer = produce((state: CellState = initialState, action: Action): C
 
 		case ActionTypes.FETCH_CELLS_END:
 			state.loading = false;
-			state.order = action.payload.map(cell => cell.id);
-			state.data = action.payload.reduce((acc, cell) => {
-				acc[cell.id] = cell;
 
-				return acc;
+			state.order = action.payLoad.map(cell => cell.ID);
+			state.data = action.payLoad.reduce((accumulator, cell) => {
+				accumulator[cell.ID] = cell;
+
+				return accumulator;
 			}, {} as CellState['data']);
 
 			return state;
-		
+
 		case ActionTypes.FETCH_CELLS_ERROR:
 			state.loading = false;
-			state.error = action.payload;
-			
-			// load default cells
-			state.order = defaultCells.map(cell => cell.id);
-			state.data = defaultCells.reduce((acc, cell) => {
-				acc[cell.id] = cell;
+			state.error = action.payLoad;
 
-				return acc;
+			// load default cells
+			state.order = defaultCells.map(cell => cell.ID);
+			state.data = defaultCells.reduce((accumulator, cell) => {
+				accumulator[cell.ID] = cell;
+
+				return accumulator;
 			}, {} as CellState['data']);
 
 			return state;
 
 		case ActionTypes.SAVE_CELLS_ERROR:
-			state.error = action.payload;
+			state.error = action.payLoad;
 
 			return state;
-			
+
 		default:
 			return state;
 	};

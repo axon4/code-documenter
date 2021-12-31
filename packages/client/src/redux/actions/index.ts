@@ -5,41 +5,41 @@ export type Direction = 'up' | 'down';
 
 export interface MoveCellAction {
 	type: ActionTypes.MOVE_CELL;
-	payload: {
-		id: string;
+	payLoad: {
+		ID: string;
 		direction: Direction;
 	};
 };
 
-export interface UpdateCellAction {
+export interface UpDateCellAction {
 	type: ActionTypes.UPDATE_CELL;
-	payload: {
-		id: string;
-		content: string;
+	payLoad: {
+		ID: string;
+		conTent: string;
 	};
 };
 
 export interface DeleteCellAction {
 	type: ActionTypes.DELETE_CELL;
-	payload: string;
+	payLoad: string;
 };
 
 export interface InsertCellAfterAction {
 	type: ActionTypes.INSERT_CELL_AFTER;
-	payload: {
-		id: string | null;
+	payLoad: {
+		ID: string | null;
 		type: CellTypes;
 	};
 };
 
 export interface BundleStartAction {
 	type: ActionTypes.BUNDLE_START;
-	payload: {cellID: string};
+	payLoad: {cellID: string};
 };
 
 export interface BundleEndAction {
 	type: ActionTypes.BUNDLE_END;
-	payload: {
+	payLoad: {
 		cellID: string,
 		bundle: {
 			code: string,
@@ -54,21 +54,21 @@ export interface FetchCellsStartAction {
 
 export interface FetchCellsEndAction {
 	type: ActionTypes.FETCH_CELLS_END;
-	payload: Cell[];
+	payLoad: Cell[];
 };
 
 export interface FetchCellsErrorAction {
 	type: ActionTypes.FETCH_CELLS_ERROR;
-	payload: string;
+	payLoad: string;
 };
 
 export interface SaveCellsErrorAction {
 	type: ActionTypes.SAVE_CELLS_ERROR;
-	payload: string;
+	payLoad: string;
 }
 
 export type Action = MoveCellAction
-	| UpdateCellAction
+	| UpDateCellAction
 	| DeleteCellAction
 	| InsertCellAfterAction
 	| BundleStartAction

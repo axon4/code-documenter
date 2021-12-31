@@ -3,9 +3,9 @@ import { Dispatch } from 'redux';
 import { RootState } from '../';
 import {
 	MoveCellAction,
-	UpdateCellAction, 
-	DeleteCellAction, 
-	InsertCellAfterAction, 
+	UpDateCellAction,
+	DeleteCellAction,
+	InsertCellAfterAction,
 	Direction,
 	Action
 } from '../actions';
@@ -13,57 +13,49 @@ import { ActionTypes } from '../actionTypes';
 import { Cell, CellTypes } from '../cell';
 import bundler from '../../bundler';
 
-export const moveCell = (id: string, direction: Direction): MoveCellAction => {
+export const moveCell = (ID: string, direction: Direction): MoveCellAction => {
 	return {
 		type: ActionTypes.MOVE_CELL,
-		payload: {
-			id,
-			direction
-		}
+		payLoad: { ID, direction }
 	};
 };
 
-export const updateCell = (id: string, content: string): UpdateCellAction => {
+export const upDateCell = (ID: string, conTent: string): UpDateCellAction => {
 	return {
 		type: ActionTypes.UPDATE_CELL,
-		payload: {
-			id,
-			content
-		}
+		payLoad: { ID, conTent }
 	};
 };
 
-export const deleteCell = (id: string): DeleteCellAction => {
+export const deleteCell = (ID: string): DeleteCellAction => {
 	return {
 		type: ActionTypes.DELETE_CELL,
-		payload: id
+		payLoad: ID
 	};
 };
 
-export const insertCellAfter = (
-	id: string | null, cellType: CellTypes
-): InsertCellAfterAction => {
+export const insertCellAfter = (ID: string | null, cellType: CellTypes): InsertCellAfterAction => {
 	return {
 		type: ActionTypes.INSERT_CELL_AFTER,
-		payload: {
-			id,
+		payLoad: {
+			ID, 
 			type: cellType
 		}
 	};
 };
 
-export const createBundle = (cellID: string, input: string) => {
-	return async (dispatch: Dispatch<Action>) => {
-		dispatch({
+export const createBundle = (cellID: string, inPut: string) => {
+	return async (disPatch: Dispatch<Action>) => {
+		disPatch({
 			type: ActionTypes.BUNDLE_START,
-			payload: { cellID }
+			payLoad: { cellID }
 		});
 
-		const result = await bundler(input);
+		const result = await bundler(inPut);
 
-		dispatch({
+		disPatch({
 			type: ActionTypes.BUNDLE_END,
-			payload: { 
+			payLoad: {
 				cellID,
 				bundle: result!
 			}
@@ -71,35 +63,35 @@ export const createBundle = (cellID: string, input: string) => {
 	};
 };
 
-export const fetchCells = () => async (dispatch: Dispatch<Action>) => {
-	dispatch({type: ActionTypes.FETCH_CELLS_START});
+export const fetchCells = () => async (disPatch: Dispatch<Action>) => {
+	disPatch({type: ActionTypes.FETCH_CELLS_START});
 
 	try {
 		const { data }: {data: Cell[]} = await axios.get('/cells');
 
-		dispatch({
+		disPatch({
 			type: ActionTypes.FETCH_CELLS_END,
-			payload: data
+			payLoad: data
 		});
 	} catch (error: any) {
-		dispatch({
+		disPatch({
 			type: ActionTypes.FETCH_CELLS_ERROR,
-			payload: error.message
+			payLoad: error.message
 		});
 	};
 };
 
 export const saveCells = () => {
-	return async (dispatch: Dispatch<Action>, getState: () => RootState) => {
+	return async (disPatch: Dispatch<Action>, getState: () => RootState) => {
 		const { cell: { order, data } } = getState();
-		const cells = order.map(id => data[id]);
+		const cells = order.map(ID => data[ID]);
 
 		try {
 			await axios.post('/cells', { cells });
 		} catch (error: any) {
-			dispatch({
+			disPatch({
 				type: ActionTypes.SAVE_CELLS_ERROR,
-				payload: error.message
+				payLoad: error.message
 			});
 		};
 	};

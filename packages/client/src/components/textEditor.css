@@ -37,7 +37,7 @@
 }
 
 .text-editor .w-md-editor-show-live {
-	/* Hide menu bar buttons to prevent accidental delete */
+	/* hide menu-bar--buttons to preVent accidental-deletion */
 	z-index: 777;
 }
 

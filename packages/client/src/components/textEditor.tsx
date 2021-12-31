@@ -10,34 +10,34 @@ interface TextEditorProps {
 
 const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
 	const [ editing, setEditing ] = useState(false);
-	const { updateCell } = useActions();
-	
-	const markdownWrapperRef = useRef<HTMLDivElement | null>(null);
+	const { upDateCell } = useActions();
+
+	const markDownWrapperReference = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
-		const outsideClickListener = (event: MouseEvent) => {
-			if (markdownWrapperRef.current && event.target && markdownWrapperRef.current.contains(event.target as Node)) {return};
-			
+		const outSideClickHandler = (event: MouseEvent) => {
+			if (markDownWrapperReference.current && event.target && markDownWrapperReference.current.contains(event.target as Node)) return;
+
 			setEditing(false);
 		};
 
-		document.addEventListener('click', outsideClickListener, {capture: true});
+		document.addEventListener('click', outSideClickHandler, {capture: true});
 
-		return () => document.removeEventListener('click', outsideClickListener, {capture: true});
+		return () => {document.removeEventListener('click', outSideClickHandler, {capture: true})};
 	}, []);
 
 	if (editing) {
 		return (
-			<div ref={markdownWrapperRef} className='text-editor'>
-				<MDEditor value={cell.content} onChange={updatedMarkdown => updateCell(cell.id, updatedMarkdown || '')} />
+			<div ref={markDownWrapperReference} className='text-editor'>
+				<MDEditor value={cell.conTent} onChange={updatedMarkdown => upDateCell(cell.ID, updatedMarkdown || '')} />
 			</div>
 		);
 	};
 
 	return (
-		<div className='text-editor card' onClick={() => setEditing(true)}>
+		<div className='text-editor card' onClick={() => {setEditing(true)}}>
 			<div className='card-content'>
-				<MDEditor.Markdown source={cell.content || 'Click to Edit'} />
+				<MDEditor.Markdown source={cell.conTent || 'Click to Edit'} />
 			</div>
 		</div>
 	);

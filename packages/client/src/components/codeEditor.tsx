@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import Editor, { EditorDidMount } from '@monaco-editor/react';
+import HighLighter from 'monaco-jsx-highlighter';
 import codeShift from 'jscodeshift';
-import Highlighter from 'monaco-jsx-highlighter';
 import prettier from 'prettier';
 import parser from 'prettier/parser-babel';
+import './codeEditorHighLight.css';
 import './codeEditor.css';
-import './codeEditorHighlighting.css';
 
 interface CodeEditorProps {
 	initialValue: string;
@@ -13,44 +13,37 @@ interface CodeEditorProps {
 };
 
 const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
-	const editorRef = useRef<any>();
+	const editorReference = useRef<any>();
 
 	const onEditorDidMount: EditorDidMount = (getValue, editor) => {
-		editorRef.current = editor;
+		editorReference.current = editor;
 
-		editor.onDidChangeModelContent(() => onChange(getValue()));
+		editor.onDidChangeModelContent(() => {onChange(getValue())});
 		editor.getModel()?.updateOptions({tabSize: 4});
 
 		// @ts-ignore
-		const highlighter = new Highlighter(window.monaco, codeShift, editor);
-		highlighter.highLightOnDidChangeModelContent(
-			() => {},
-			() => {},
-			undefined,
-			() => {}
-		);
+		const highLighter = new HighLighter(window.monaco, codeShift, editor);
+
+		highLighter.highLightOnDidChangeModelContent(() => {}, () => {}, undefined, () => {});
 	};
 
-	const onFormatClick = () => {
-		const unformattedCode = editorRef.current.getModel().getValue();
-		const formattedCode = prettier.format(unformattedCode, {
+	const onForMatClick = () => {
+		const unForMattedCode = editorReference.current.getModel().getValue();
+		const forMattedCode = prettier.format(unForMattedCode, {
 			parser: 'babel',
 			plugins: [parser],
 			useTabs: true,
 			singleQuote: true,
 			semi: true
 		}).replace(/\n$/, '');
-		
-		editorRef.current.setValue(formattedCode);
+
+		editorReference.current.setValue(forMattedCode);
 	};
 
 	return (
 		<div className='editor-container'>
-			<button
-				className='button button-format is-primary is-small'
-				onClick={onFormatClick}
-			>
-				Format
+			<button className='button button-format is-primary is-small' onClick={onForMatClick}>
+				ForMat
 			</button>
 			<Editor
 				editorDidMount={onEditorDidMount}

@@ -1,8 +1,10 @@
 {
-	"name": "root",
+	"name": "code-documenter",
+	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"start": "lerna run start --parallel"
+		"start": "lerna run start --parallel",
+		"bootStrap": "lerna bootstrap"
 	},
 	"devDependencies": {
 		"lerna": "^3.22.1"

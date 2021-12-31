@@ -3,10 +3,10 @@ import express from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { createCellsRouter } from './routes/cells';
 
-export const serve = (filename: string, directory: string, port: number, useProxy: boolean) => {
+export const serve = (fileName: string, directory: string, port: number, useProxy: boolean) => {
 	const server = express();
 
-	server.use(createCellsRouter(filename, directory));
+	server.use(createCellsRouter(fileName, directory));
 
 	if (useProxy === true) {
 		server.use(createProxyMiddleware({
@@ -18,8 +18,9 @@ export const serve = (filename: string, directory: string, port: number, useProx
 		const packagePath = require.resolve('code-documenter-client/build/index.html');
 
 		server.use(express.static(path.dirname(packagePath)));
-	};	
+	};
+
 	return new Promise<void>((resolve, reject) => {
-		server.listen(port, resolve).on('error', reject)
+		server.listen(port, resolve).on('error', reject);
 	});
 };
