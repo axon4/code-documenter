@@ -1,0 +1,2 @@
+(this["webpackJsonpcode-documenter-client"]=this["webpackJsonpcode-documenter-client"]||[]).push([[504],{675:function(e,n){!function(e){function n(n,t){e.languages[n]&&e.languages.insertBefore(n,"comment",{"doc-comment":t})}var t=e.languages.markup.tag,a={pattern:/\/\/\/.*/,greedy:!0,alias:"comment",inside:{tag:t}},c={pattern:/'''.*/,greedy:!0,alias:"comment",inside:{tag:t}};n("csharp",a),n("fsharp",a),n("vbnet",c)}(Prism)}}]);
+//# sourceMappingURL=504.fa8ff396.chunk.js.map
