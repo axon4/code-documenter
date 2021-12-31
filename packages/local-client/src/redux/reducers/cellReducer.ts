@@ -2,6 +2,7 @@ import produce from 'immer';
 import { Action } from '../actions';
 import { ActionTypes } from '../actionTypes';
 import { Cell } from '../cell';
+import { defaultCells } from './defaultCells';
 
 interface CellState {
 	loading: boolean;
@@ -84,6 +85,14 @@ const cellReducer = produce((state: CellState = initialState, action: Action): C
 		case ActionTypes.FETCH_CELLS_ERROR:
 			state.loading = false;
 			state.error = action.payload;
+			
+			// load default cells
+			state.order = defaultCells.map(cell => cell.id);
+			state.data = defaultCells.reduce((acc, cell) => {
+				acc[cell.id] = cell;
+
+				return acc;
+			}, {} as CellState['data']);
 
 			return state;
 
