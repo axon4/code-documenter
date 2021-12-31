@@ -1,6 +1,7 @@
 import path from 'path';
 import { promises as fs } from 'fs';
 import express from 'express';
+import { defaultCells } from './defaultCells';
 
 interface Cell {
 	id: string;
@@ -19,10 +20,13 @@ export const createCellsRouter = (filename: string, directory: string) => {
 		try {
 			const file = await fs.readFile(fullPath, {encoding: 'utf-8'});
 
-			response.status(200).end(JSON.parse(file));
+			response.status(200).send(JSON.parse(file));
 		} catch (error: any) {
 			if (error.code === 'ENOENT') {
-				await fs.writeFile(fullPath, '[]', 'utf-8');
+				await fs.writeFile(fullPath, JSON.stringify(defaultCells), 'utf-8');
+				const defaultFile = await fs.readFile(fullPath, {encoding: 'utf-8'});
+
+				response.status(200).send(JSON.parse(defaultFile));
 			} else {
 				throw error;
 			};
